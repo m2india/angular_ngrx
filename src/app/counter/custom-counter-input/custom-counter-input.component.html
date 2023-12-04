@@ -1,12 +1,20 @@
-<div>
+<div class="container">
     <!-- <div class="my-3"> {{testText}} </div> -->
 
     <div class="my-3"> {{ testText$ | async }} </div>
 
-    <input type="text" placeholder="enter value" [(ngModel)]="value" />
-    <button class="btn btn-primary" type="button" (click)="onAdd()"> Add to Counter </button>
+    <div class="row">
+        <div class="col-12 col-md-8">
+            <input class="form-control" type="text" placeholder="enter value" [(ngModel)]="value" />
+        </div>
+        <div class="col-6 col-md-4">
+            <button class="btn btn-primary" type="button" (click)="onAdd()"> Add to Counter </button>
+        </div>
+      </div>
+
 </div>
+<br>
 
 <div>
-    <button (click)="onChangeChannelName()">Change Chennal Name</button>
+    <button class="btn btn-primary" (click)="onChangeChannelName()">Change Chennal Name</button>
 </div>
