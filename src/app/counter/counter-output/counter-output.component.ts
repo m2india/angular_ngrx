@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { counterState } from '../state/counter.state';
 import { Observable, Subscribable, Subscription } from 'rxjs';
 import { getCounter } from '../state/counter.selectors';
+import { Appstate } from 'src/app/store/app.state';
 
 @Component({
   selector: 'app-counter-output',
@@ -21,7 +22,9 @@ export class CounterOutputComponent implements OnInit, OnDestroy {
 
   // counterSubscription: Subscription;
 
-  constructor( private store: Store<{ counter : counterState }>){}
+  // constructor( private store: Store<{ counter : counterState }>){}
+
+  constructor( private store: Store<Appstate>){}
 
   ngOnInit(): void {
     // this.counterSubscription = this.store

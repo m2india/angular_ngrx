@@ -9,12 +9,14 @@ import { CounterButtonComponent } from './counter/counter-button/counter-button.
 import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './counter/state/counter.reducer';
 import { CustomCounterInputComponent } from './counter/custom-counter-input/custom-counter-input.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { appReducer } from './store/app.state';
+import { AddPostComponent } from './posts/add-post/add-post.component';
 
 
 @NgModule({
@@ -26,13 +28,17 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     CustomCounterInputComponent,
     HomeComponent,
     HeaderComponent,
-    PostListComponent
+    PostListComponent,
+    AddPostComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     FormsModule,
-    StoreModule.forRoot({ counter: counterReducer }),
+    // StoreModule.forRoot({ counter: counterReducer,  }),
+    StoreModule.forRoot(appReducer),
+    
     StoreDevtoolsModule.instrument({
       // maxAge: 25, // Retains last 25 states
       logOnly: isDevMode(), // Restrict extension to log-only mode
