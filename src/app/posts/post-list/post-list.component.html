@@ -12,6 +12,7 @@
                 <th scope="col">Id</th>
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -19,6 +20,14 @@
                 <td>{{post.id}}</td>
                 <td>{{post.title}}</td>
                 <td>{{post.description}}</td>
+                <td>
+                    <a 
+                    href="" 
+                    [routerLink]="['edit', post.id]"
+                    class="btn btn-warning">
+                    Update
+                    </a>
+                </td>
             </tr>
             <tr *ngIf="postData.length == 0">
                 <td>No Datas</td>
