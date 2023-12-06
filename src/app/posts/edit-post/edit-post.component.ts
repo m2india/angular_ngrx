@@ -6,6 +6,7 @@ import { Appstate } from 'src/app/store/app.state';
 import { Post } from 'src/app/models/posts.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { updatePost } from '../post-list/state/posts.action';
 
 @Component({
   selector: 'app-edit-post',
@@ -22,14 +23,9 @@ export class EditPostComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      // console.log(params.get('id'));
       const id = params.get('id');
       this.postSubscription =   this.store.select(getPostById, {id}).subscribe((data) => {
-      
-        this.post = data;
-
-        console.log(this.post);
-        
+        this.post = data;        
         this.createForm();
       });
     });
@@ -72,7 +68,26 @@ export class EditPostComponent implements OnInit, OnDestroy {
     }
   }
 
-  onUpdatePost(){
+  onSubmit(){    
+
+      if(!this.postForm.valid){
+        return;
+      }
+    
+      const title =  this.postForm.value.title;
+      const description =  this.postForm.value.description;
+
+      const post: Post = {
+        id: this.post.id,
+        title,
+        description,
+      };
+
+
+    //  console.log("before sending", post);
+      
+
+      this.store.dispatch(updatePost({ post }));
 
   }
 

@@ -50,9 +50,7 @@ export class AddPostComponent implements OnInit {
     if(!this.postForm.valid){
       return;
     }
-
-    // console.log(this.postForm.value);
-
+    
     const post: Post = {
       title:  this.postForm.value.title,
       description:  this.postForm.value.description

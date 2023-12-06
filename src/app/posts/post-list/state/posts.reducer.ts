@@ -1,6 +1,8 @@
 import { createReducer, on } from "@ngrx/store";
 import { initalPostState } from "./posts.state";
-import { addPost } from "./posts.action";
+import { addPost, updatePost } from "./posts.action";
+import { state } from "@angular/animations";
+import { Action } from "rxjs/internal/scheduler/Action";
 
 
 const _postsReducer = createReducer(
@@ -15,6 +17,21 @@ const _postsReducer = createReducer(
             ...state,
             posts_st: [...state.posts_st, post]
         }
+    }),
+    on(updatePost, (state, action) => {
+
+    //    console.log("state, action", state, action);
+
+        const updatePosts = state.posts_st.map((post) => {
+            return action.post.id === post.id ? action.post : post;
+        });
+    //    console.log('const', updatePost);
+    
+        return{
+            ...state,
+            posts_st: updatePosts,
+        };
+
     })
 );
 
