@@ -27,6 +27,12 @@
                     class="btn btn-warning">
                     Update
                     </a>
+                    &nbsp;
+                    <a 
+                    href="" (click)="onDeletePost(post.id)"
+                    class="btn btn-danger">
+                    Delete
+                    </a>
                 </td>
             </tr>
             <tr *ngIf="postData.length == 0">

@@ -1,9 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { initalPostState } from "./posts.state";
-import { addPost, updatePost } from "./posts.action";
-import { state } from "@angular/animations";
-import { Action } from "rxjs/internal/scheduler/Action";
-
+import { addPost, deletePost, updatePost } from "./posts.action";
 
 const _postsReducer = createReducer(
     initalPostState,
@@ -20,18 +17,25 @@ const _postsReducer = createReducer(
     }),
     on(updatePost, (state, action) => {
 
-    //    console.log("state, action", state, action);
-
+        // console.log("state, action", state, action);
         const updatePosts = state.posts_st.map((post) => {
             return action.post.id === post.id ? action.post : post;
         });
-    //    console.log('const', updatePost);
-    
+
+        // console.log('const', updatePost);
         return{
             ...state,
             posts_st: updatePosts,
         };
-
+    }),
+    on(deletePost,(state, { id }) => {
+        const deletePostId = state.posts_st.filter((post) => {
+            return post.id !== id;
+        })
+        return{
+            ...state,
+            posts_st: deletePostId
+        }
     })
 );
 

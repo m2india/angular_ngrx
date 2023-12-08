@@ -23,15 +23,8 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CounterComponent,
-    CounterOutputComponent,
-    CounterButtonComponent,
-    CustomCounterInputComponent,
     HomeComponent,
     HeaderComponent,
-    PostListComponent,
-    AddPostComponent,
-    EditPostComponent
   ],
   imports: [
     BrowserModule,
